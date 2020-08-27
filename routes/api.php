@@ -21,6 +21,11 @@ Route::middleware('auth:sanctum')->get(
 );
 
 Route::post('/login', 'Api\AuthController@login')->name('login');
+Route::post('/block-user', 'Api\AuthController@blockUser')->name('login.block');
+Route::get('/is-blocked-ip/{ip}', 'Api\AuthController@isBlocked')->name('login.is.block');
+Route::get('email/verify/{id}', 'Api\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Api\VerificationController@resend')->name('verification.resend');
+Route::post('/reset-password', 'Api\ResetPasswordController')->name('reset.password');
 
 Route::middleware('auth:sanctum')->group(function () {
 

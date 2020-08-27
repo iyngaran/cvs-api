@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Domain\User\Models\PasswordResetToken;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','password_change_at'
     ];
 
     /**
@@ -55,5 +56,10 @@ class User extends Authenticatable
             config('permission.column_names.model_morph_key'),
             'permission_id'
         );
+    }
+
+    public function passwordResetTokens()
+    {
+        return $this->morphMany(PasswordResetToken::class, 'tokenable');
     }
 }

@@ -20,6 +20,7 @@ class CreateUserAction
 
         $user->assignRole($attributes['roles']);
         $user->givePermissionTo($attributes['extraPermissions']);
+        $user->sendEmailVerificationNotification();
         return $user;
     }
 }

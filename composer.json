@@ -13,7 +13,6 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/passport": "^9.3",
         "laravel/sanctum": "^2.4",
         "laravel/tinker": "^2.0",
         "owen-it/laravel-auditing": "^10.0",

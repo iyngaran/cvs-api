@@ -3,6 +3,7 @@
 namespace App\Console\Commands\User;
 
 use App\Domain\User\Actions\CreateUserAction;
+use App\Domain\User\Actions\VerifyUserAction;
 use App\Domain\User\DTOs\UserData;
 use App\Domain\User\Exceptions\RoleNotFoundException;
 use App\Domain\User\Repositories\RoleRepositoryInterface;
@@ -57,6 +58,10 @@ class CreateAdministrator extends Command
             $request->replace($data);
             $userData = UserData::fromRequest($request);
             $user = (new CreateUserAction())->execute($userData);
+            (new VerifyUserAction())->execute($user);
+            $user->update([
+                'password_change_at' => now()
+            ]);
             $this->info("\n");
             $this->info("The administrator account has been created successfully");
             $this->info("The password is : $userPassword");
